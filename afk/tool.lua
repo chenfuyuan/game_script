@@ -9,6 +9,7 @@ timeConfig.click_end_sleep_time = 2000;    -- 每次点击某个按钮后时间�
 timeConfig.click_step_sleep_time = 2000;    -- 每次操作的时间间隔
 timeConfig.check_color_sleep_time = 1000;    -- 检查颜色等待时间
 timeConfig.step_end_time = 2000;    -- 每次命令结束后，等待时间
+timeConfig.check_challenge_end_timeout = 180;    -- 检查战斗是否结束的超时时间 单位为秒
 globalConfig = {};
 globalConfig.isColor_dix = 90;
 globalConfig.check_color_num = 5;    -- 检查颜色，校验次数，到达指定次数后，仍然没有校验成功，则结束检查
@@ -25,7 +26,7 @@ end
 -- 点击某按钮
 function clickButton(comp)
     -- 检查是否是该按钮
-    if (not isThisComp(comp)) then 
+    if (comp.color ~= nil and not isThisComp(comp)) then 
         return false
     end;
     
@@ -64,4 +65,20 @@ end
 -- 每次操作结束后等待时间
 function stepEnd()
     mSleep(timeConfig.step_end_time);
+end
+
+-- 检查颜色是否变化，在超时时间内变化，则返回true,否则则返回false
+function notRepeatUtilCheckColor(comp)
+    i = 0
+    repeat
+        mSleep(timeConfig.check_color_sleep_time)
+        if(i>timeConfig.check_challenge_end_timeout) then
+            break
+        end
+        i = i + 1
+    until (not isThisComp(comp))
+    if (i > timeConfig.check_challenge_end_timeout) then
+        return false
+    end
+    return true
 end

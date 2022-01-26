@@ -33,7 +33,9 @@ local function quickAfkFree()
     stepEnd()
 end
 
-
+local function challengeBoss()
+    home.challenge_boss:start()
+end
 
 function dayTask.run()
     -- 初始化
@@ -45,6 +47,8 @@ function dayTask.run()
 
     -- 快速挂机
     -- quickAfkFree()
-
+    
+    -- 挑战首领
+    challengeBoss()
 end
 

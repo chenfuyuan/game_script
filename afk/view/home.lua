@@ -3,6 +3,7 @@
 package.path = "sdcard/TouchSprite/lua/view/?.lua;"..package.path
 
 require("tool")
+require("commonView")
 home = {}
 
 
@@ -28,6 +29,7 @@ home.friend = moduleInit(643,537,0xae8a5f)    -- 朋友
 
 -- 挑战首领
 home.challenge_boss = moduleInit(360,1107,0xffffff)    -- 挑战首领
+home.challenge_boss.confirm = moduleInit(359,987)    -- 挑战首领确认
 
 -- 贸易港
 home.button_gift = moduleInit(73,196,0xc2a075)    -- 贸易港(礼包领取)
@@ -71,5 +73,16 @@ function home.afk:get(num)
     end
 end
 
-
+-- 挑战首领
+function home.challenge_boss:start()
+    -- 点击挑战首领
+    clickButtonNoCheck(self)
+    
+    -- 确认挑战首领
+    clickButton(self.confirm)
+    
+    -- 挑战开始
+    commonView.challenge:start()
+    
+end
 
