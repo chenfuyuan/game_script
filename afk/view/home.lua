@@ -19,7 +19,7 @@ home.box.cancel=moduleInit(236,907,0x9b5f49)    -- 战利品箱子-取消
 
 -- 快速挂机
 home.afk = moduleInit(619,1093,0xa5ad42)    -- 快速挂机
-home.afk.confirm = moduleInit(456,846,0xf1d88)    -- 快速挂机-确认
+home.afk.confirm = moduleInit(456,846,0xf1d88e)    -- 快速挂机-确认
 home.afk.cancel = moduleInit(262,845,0xb28473)    -- 快速挂机-取消
 home.afk.check_not_free = moduleInit(418,837,0xefe7ff)    -- 判断 非免费挂机
 
@@ -34,14 +34,42 @@ home.button_gift = moduleInit(73,196,0xc2a075)    -- 贸易港(礼包领取)
 
 
 -- 收集箱子
-function home.collectBox()
+function home.box:collect()
     -- 点击箱子
-    clickButton(home.box)
+    clickButton(self)
     -- 点击确认
-    clickButton(home.box.confirm)
+    clickButton(self.confirm)
 end
 
+-- 快速挂机(只挂机免费的)
+function home.afk:getFree()
+    -- 进行快速挂机    
+    clickButton(self);
+    
+    -- 判断是否免费
+    if (checkColor(self.check_not_free)) then
+        clickButton(self.cancel);
+        return false;
+    end
+    
+    -- 点击确认
+    clickButton(self.confirm);
+    --需要点击任意键关闭弹出信息
+    clickButtonNoCheck(self.cancel);
+    clickButton(self.cancel);
+end
 
+-- 快速挂机
+function home.afk:get(num)
+    -- 进行快速挂机    
+    clickButton(self);
+    -- 点击确认
+    for i=1,num do
+        clickButton(self.confirm);
+        clickButtonNoCheck(self.cancel);
+        clickButton(self.cancel);
+    end
+end
 
 
 

@@ -9,23 +9,42 @@ dayTaskConfig = {}
 dayTaskConfig.collect_box_num = 2
 
 
-function dayTask.init()
+local function init()
     -- 展开左右两侧下拉菜单栏
     clickButton(home.left_drop)
     clickButton(home.right_drop)
 
 end 
+
+
+-- 领取战利品
+local function collectBox()
+    -- 领取战利品
+    for i=1,dayTaskConfig.collect_box_num do
+        home.box:collect()
+    end
+    stepEnd()
+end
+
+-- 快速挂机(只免费)
+local function quickAfkFree()
+    home.afk:getFree()
+    --home.afk:get();
+    stepEnd()
+end
+
+
+
 function dayTask.run()
     -- 初始化
-    dayTask.init()
+    init()
     
-    -- 领取战利品两次
-    for i=1,dayTaskConfig.collect_box_num do
-        home.collectBox()
-    end
-    
+    -- home页面
+    -- 领取战利品
+    -- collectBox();
+
     -- 快速挂机
-    
+    -- quickAfkFree()
 
 end
 

@@ -8,7 +8,7 @@ timeConfig.click_down_sleep_time = 200;    -- 点击间隔时间
 timeConfig.click_end_sleep_time = 2000;    -- 每次点击某个按钮后时间间隔
 timeConfig.click_step_sleep_time = 2000;    -- 每次操作的时间间隔
 timeConfig.check_color_sleep_time = 1000;    -- 检查颜色等待时间
-
+timeConfig.step_end_time = 2000;    -- 每次命令结束后，等待时间
 globalConfig = {};
 globalConfig.isColor_dix = 90;
 globalConfig.check_color_num = 5;    -- 检查颜色，校验次数，到达指定次数后，仍然没有校验成功，则结束检查
@@ -63,5 +63,5 @@ end
 
 -- 每次操作结束后等待时间
 function stepEnd()
-    mSleep(timeConfig.step_sleep_time);
+    mSleep(timeConfig.step_end_time);
 end
