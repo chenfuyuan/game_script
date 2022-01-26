@@ -31,13 +31,19 @@ ONHOOK_CANCEL_X = 259
 ONHOOK_CANCEL_Y =842
 ONHOOK_CANCEL_BLACK_COLOR = 0x39231c
 
+--挑战首领
+PRINCE_X = 365
+PRINCE_Y = 1109
+
 function index.run()
     --收集战利品
     --index.collect()
     
     --快速挂机
-    index.quickOnHook()
+    --index.quickOnHook()
     
+    --挑战首领
+    index.challengePrince()
 end
 
 --领取战利品
@@ -80,3 +86,7 @@ function index.quickOnHook()
     stepEnd()
 end
 
+--挑战首领
+function index.challengePrince()
+    
+end

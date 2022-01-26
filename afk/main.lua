@@ -1,9 +1,9 @@
 require "TSLib"
 
 --设置加载路径
-package.path = "sdcard/TouchSprite/lua/dayTask/?.lua;"..package.path
+package.path = "sdcard/TouchSprite/lua/dayTask/?.lua;".."sdcard/TouchSprite/lua/re/?.lua;"..package.path
 require("dayTask")
-
+require("reChallenge")
 function initXY()
     init(2);
     mSleep(1000);    
@@ -12,4 +12,8 @@ end
 --初始化坐标轴
 initXY()
 
-dayTask.run()
+--每日任务
+-- dayTask.run()
+
+-- 反复挑战
+reChallenge.run()
