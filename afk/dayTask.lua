@@ -35,6 +35,12 @@ end
 
 local function challengeBoss()
     home.challenge_boss:start()
+    stepEnd()
+end
+
+local function friendGet()
+    home.friend:get();
+    stepEnd();
 end
 
 function dayTask.run()
@@ -49,6 +55,9 @@ function dayTask.run()
     -- quickAfkFree()
     
     -- 挑战首领
-    challengeBoss()
+    -- challengeBoss()
+    
+    -- 领取友情点
+    friendGet()
 end
 

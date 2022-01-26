@@ -26,7 +26,8 @@ home.afk.check_not_free = moduleInit(418,837,0xefe7ff)    -- 判断 非免费挂
 
 -- 朋友
 home.friend = moduleInit(643,537,0xae8a5f)    -- 朋友
-
+home.friend.confirm = moduleInit(602,1057,0xf1d086)    --朋友 一键领取和赠送
+home.friend.cancel = moduleInit(35,1208,0xf9e0a7)    --朋友 退出
 -- 挑战首领
 home.challenge_boss = moduleInit(360,1107,0xffffff)    -- 挑战首领
 home.challenge_boss.confirm = moduleInit(359,987)    -- 挑战首领确认
@@ -86,3 +87,10 @@ function home.challenge_boss:start()
     
 end
 
+
+-- 领取友情点
+function home.friend:get()
+    clickButton(self);
+    clickButton(self.confirm)
+    clickButton(self.cancel)
+end
